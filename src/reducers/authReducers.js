@@ -1,6 +1,13 @@
-import { EMAIL_CHANGED, PASSWORD_CHANGED } from "../actions/types";
+import { EMAIL_CHANGED, PASSWORD_CHANGED, LOGIN_CLICKED, LOGIN_COMPLETE, LOGIN_ERRORED} from "../actions/types";
+import { auth } from "../../node_modules/firebase";
 
-const INITIALSTATE = {email: '', password: ''};
+const INITIALSTATE = {
+    email: '',
+    password: '',
+    loading: false,
+    error: '',
+    user : null
+};
 
 export default (state = INITIALSTATE, action) => {
     switch (action.type){
@@ -8,10 +15,17 @@ export default (state = INITIALSTATE, action) => {
             return {...state, email: action.payload};
             break;
         case PASSWORD_CHANGED:
-            console.log(action.payload)
             return {...state, password: action.payload}
             break;
-        default: 
+        case LOGIN_CLICKED:
+            return {...state, loading: action.payload}
+            break;
+        case LOGIN_COMPLETE:
+            return {...state, loading: false, user: action.payload, error: '', password: '', email: ''}
+            break;
+        case LOGIN_ERRORED:
+            return {...state, loading: false, error: 'Authentication Failed', password: '', email: ''}
+        default:
             return state;
             break;
     }
