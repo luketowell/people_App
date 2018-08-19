@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 
-class EmployeeList extends Component {
+class List extends Component {
 
     render(){
         return (
@@ -15,4 +15,4 @@ class EmployeeList extends Component {
     };
 }
 
-export default EmployeeList;
+export default List;
