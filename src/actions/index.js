@@ -18,7 +18,7 @@ export const passwordChanged = (text) => {
 
 const loginSuccess = (dispatch, user) => {
     dispatch({type: LOGIN_COMPLETE, payload: user});
-    Actions.List();
+    Actions.main();
 }
 
 const loginFail = (dispatch, error) => {
