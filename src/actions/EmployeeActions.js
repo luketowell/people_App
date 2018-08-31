@@ -1,4 +1,3 @@
-import firebase from 'firebase';
 import { EMPLOYEE_UPDATE } from './types';
 
 export const employeeUpdate = ({prop, value}) => {
