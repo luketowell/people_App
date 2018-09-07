@@ -3,6 +3,7 @@ import { View, Text, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { employeeDetails } from '../actions';
 import { CardSection, Card } from './common';
+import _ from 'lodash';
 
 class List extends Component {
 
@@ -12,19 +13,18 @@ class List extends Component {
 
 
     render() {
+        console.log(this.props.data)
+        const arr = _(this.props.data) //wrap object so that you can chain lodash methods
+            .mapValues((value, id)=>_.merge({}, value, {id})) //attach id to object
+            .values() //get the values of the result
+            .value()
+        console.log(arr)
         return (
             <View>
                 <View>
                     <Text>stuff</Text>
-                    <Text>{JSON.stringify(this.props.data)}</Text>
-
                     
                 </View>
-                <FlatList
-                    data={this.props.data}
-                    keyExtractor = {(item,index)=> item.id}
-                    renderItem={({item}) => console.log(data)}
-                />
           </View>
         );
     }
