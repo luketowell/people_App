@@ -2,10 +2,15 @@ import React, { Component } from 'react';
 import { Text, View, Picker } from 'react-native';
 import { Card, CardSection, Input, Spinner, Button } from './common';
 import { connect } from 'react-redux';
-import { employeeUpdate }from '../actions';
+import { employeeUpdate, employeeCreate }from '../actions';
 
 class CreateEmployee extends Component {
     
+    onButtonPress(){
+        const { firstName, lastName, phone, shift } = this.props;
+
+        this.props.employeeCreate({ firstName, lastName, phone, shift });
+    }
     
 
     render(){
@@ -52,7 +57,7 @@ class CreateEmployee extends Component {
                 </CardSection>
 
                 <CardSection>
-                    <Button buttonText="Create" onPress={()=>{console.log('Created')}}/>
+                    <Button buttonText="Create" onPress={this.onButtonPress.bind(this)}/>
                 </CardSection>
             </Card>
     
@@ -68,4 +73,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, { employeeUpdate }) (CreateEmployee);
+export default connect(mapStateToProps, { employeeUpdate, employeeCreate }) (CreateEmployee);
