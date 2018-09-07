@@ -13,8 +13,7 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, [action.payload.prop]: action.payload.value };
         
         case EMPLOYEE_CREATE:
-            console.log(action.payload)
-            return true;
+            return INITIAL_STATE;
         default:
             return state;   
     }
