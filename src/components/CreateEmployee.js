@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Picker } from 'react-native';
+import { Text, View, Picker } from 'react-native';
 import { Card, CardSection, Input, Spinner, Button } from './common';
 import { connect } from 'react-redux';
 import { employeeUpdate }from '../actions';
@@ -39,16 +39,17 @@ class CreateEmployee extends Component {
                     />
                 </CardSection>
 
-                <View>
+                <CardSection extraStyles={{flexDirection: 'column'}}>
+                    <Text style={{ fontSize: 18, paddingLeft: 20 }}>Shift</Text>
                     <Picker
                         selectedValue={this.props.shift}
-                        style={{ padding: 5, backgroundColor: 'white' }}
-                        onValueChange={(itemValue, itemIndex) => this.props.employeeUpdate({prop:'shift', value: itemValue})}>
+                        onValueChange={(itemValue) => this.props.employeeUpdate({prop:'shift', value: itemValue})}>
+
                         { days.map((item, key) => (
                         <Picker.Item key={key} label={ item } value={ item } />
                         ))}
                     </Picker>
-                </View>
+                </CardSection>
 
                 <CardSection>
                     <Button buttonText="Create" onPress={()=>{console.log('Created')}}/>
